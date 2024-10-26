@@ -306,7 +306,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3470118510097574941, guid: 5f51af837b6922847bfb95e4bd1671c2, type: 3}
       propertyPath: maxIntensity
-      value: 8
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 4005623199453311954, guid: 5f51af837b6922847bfb95e4bd1671c2, type: 3}
       propertyPath: m_Name
@@ -604,7 +604,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   light: {fileID: 1196824277}
   minIntensity: 0
-  maxIntensity: 15
+  maxIntensity: 13
   smoothing: 50
 --- !u!108 &1196824277
 Light:
