@@ -28,12 +28,12 @@ public class NameSpell : MonoBehaviour
     {
         inputField.text = string.Empty;
         
-        if (input.Length >= 6) return;
+        if (input.Length < 6) return;
         if (DictionaryManager.Instance.InsertNewSpell(input, GameManager.Instance.SelectedSpell))
         {
             LevelLoadManager.Instance.UnloadMenuOverlay(LevelLoadManager.LevelNamesList[3]);
-
-
+            GameManager.stateMachine.ChangeState(GameManager.stateMachine.travelState);
+            GameManager.Instance.ResetFocusOnInputField();
             return;
         } 
         else

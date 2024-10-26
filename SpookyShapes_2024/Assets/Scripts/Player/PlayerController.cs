@@ -38,7 +38,7 @@ public class PlayerController : EntityHP
 
     private void Update()
     {
-        if (GameManager.stateMachine.GetCurrentState() == GameManager.stateMachine.fightingState) return;
+        if (GameManager.stateMachine.GetCurrentState() != GameManager.stateMachine.travelState) return;
 
         if (movementState == PLAYER_MOVEMENT_STATE.MOVING)
         {

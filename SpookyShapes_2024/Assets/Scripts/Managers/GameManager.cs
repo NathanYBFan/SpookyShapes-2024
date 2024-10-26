@@ -17,7 +17,7 @@ public class GameManager : SingletonBase<GameManager>
     public int SpellDamageMultiplier { get => spellDamageMultiplier; set => spellDamageMultiplier = value; }
     public InputActionAsset PlayerInputAction { get => playerInputAction; }
     public GameObject MainPlayer { get => mainPlayer; }
-    public GameObject SpellSpawnPosGO { get => spellSpawnPosGO; }
+    public GameObject SpellSpawnPosGO { get => spellSpawnPosGO; set => spellSpawnPosGO = value; }
     public GameObject[] SpellGOList { get => spellGOList; }
     public GameObject EnemyBase { get => enemyBase; }
     #endregion
