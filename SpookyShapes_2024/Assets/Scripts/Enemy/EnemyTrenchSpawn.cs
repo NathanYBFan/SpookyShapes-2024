@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class EnemyTrenchSpawn : MonoBehaviour
 {
-    
     [SerializeField] GameObject enemyFight;
     [SerializeField] GameObject enemyFightPos;
     bool willBeActive;
