@@ -3,8 +3,13 @@ using UnityEngine;
 
 public class DictionaryManager : SingletonBase<DictionaryManager>
 {
+    // Setters & Getters
     public Dictionary<string, GenericSpell> Spells { get => spells; set => spells = value; }
 
+    // Serialize Fields
+    [SerializeField] private SpellNameLimiterBase[] spellNameLimiterBases;
+
+    // Private variables
     private Dictionary<string, GenericSpell> spells = new Dictionary<string, GenericSpell>()
     {
         { "Nathan", new FireballSpell()},

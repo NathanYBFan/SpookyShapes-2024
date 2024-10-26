@@ -7,4 +7,9 @@ public abstract class GenericSpell
     {
         powerLevel = newPowerLevel;
     }
+
+    public int GetDamage()
+    {
+        return powerLevel * GameManager.Instance.SpellDamageMultiplier;
+    }
 }

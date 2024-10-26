@@ -1,8 +1,8 @@
+using System;
 using UnityEngine;
 
-public class GameStateMachine
+public class GameStateMachine : StateMachine
 {
-
     public MenuGameState menuState;
 
     public GameStateMachine()
@@ -11,14 +11,9 @@ public class GameStateMachine
 
     }
 
+    [Obsolete("This is not currently supported, nothing will be run in this method")]
     public void ChangeState(GameStates newState)
     {
-
+        return;
     }
-
-    public void ChangeState(IStateBase newState)
-    {
-
-    }
-
 }

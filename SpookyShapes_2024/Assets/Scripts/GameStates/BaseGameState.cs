@@ -23,7 +23,7 @@ public class BaseGameState : IStateBase
 
     public virtual void HandleInput()
     {
-        ReadMovementInput();
+
     }
 
     public virtual void Update()
@@ -31,15 +31,4 @@ public class BaseGameState : IStateBase
 
     }
     #endregion
-
-    #region Main Methods
-    private void ReadMovementInput()
-    {
-        //if (Input == null) return;
-
-        //// Movement input update
-        //movementInput = stateMachine.Navigator.Input.AnalogueAxis;
-    }
-    #endregion
-
 }

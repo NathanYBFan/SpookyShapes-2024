@@ -11,6 +11,14 @@ public class InputFieldController : MonoBehaviour
 
     private void ProcessInput(string input)
     {
-
+        if (GameManager.Instance.SelectedLimiter.ValidInput(input))
+        {
+            if (DictionaryManager.Instance.InsertNewSpell(input, GameManager.Instance.SelectedSpell))
+                return;
+            else
+            {
+                // Invalid output answer
+            }
+        }
     }
 }

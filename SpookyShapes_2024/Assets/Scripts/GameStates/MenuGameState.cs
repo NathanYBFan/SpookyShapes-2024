@@ -12,5 +12,4 @@ public class MenuGameState : BaseGameState
         base.Enter();
         GameManager.Instance.MenuSetup();
     }
-
 }
