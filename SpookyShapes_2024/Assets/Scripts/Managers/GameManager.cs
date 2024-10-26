@@ -140,7 +140,7 @@ public class GameManager : SingletonBase<GameManager>
             return true;
 
         foreach (GameObject enemy in enemies)
-            if (enemy != null) return false;
+            if (enemy != null && !enemy.GetComponent<BaseEnemy>().IsDead) return false;
 
         enemies.Clear();
         return true;
