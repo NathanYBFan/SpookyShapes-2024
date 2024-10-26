@@ -1,7 +1,11 @@
-public abstract class GenericSpell
+using UnityEngine;
+
+public abstract class GenericSpell : MonoBehaviour
 {
     public int powerLevel;
     public SpellType spellType;
+
+    [SerializeField] private GameObject spell;
 
     public void SetPowerLevel(int newPowerLevel)
     {
@@ -11,5 +15,12 @@ public abstract class GenericSpell
     public int GetDamage()
     {
         return powerLevel * GameManager.Instance.SpellDamageMultiplier;
+    }
+
+    public GameObject SpawnSpell(Vector3 spawnPos)
+    {
+        GameObject createdSpell = Instantiate(spell, spawnPos, Quaternion.identity);
+
+        return createdSpell;
     }
 }

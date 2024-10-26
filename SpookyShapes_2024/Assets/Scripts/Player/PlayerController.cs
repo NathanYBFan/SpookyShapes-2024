@@ -2,13 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerController : MonoBehaviour
+public class PlayerController : EntityHP
 {
     [SerializeField] Rigidbody playerBody;
     [SerializeField] Transform playerTransform;
     public float playerSpeed;
-    public int playerHealth;
-    public int playerHealthMax = 20;
     int nodesPassed;
     public MovementNode currentNode;
 
@@ -17,6 +15,7 @@ public class PlayerController : MonoBehaviour
     private void Awake()
     {
         instance = this;
+        
     }
 
     private void Update()

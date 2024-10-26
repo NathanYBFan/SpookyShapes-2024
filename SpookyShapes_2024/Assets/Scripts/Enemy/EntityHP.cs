@@ -1,11 +1,11 @@
 using NaughtyAttributes;
 using UnityEngine;
 
-public class EnemyHP : MonoBehaviour
+public abstract class EntityHP : MonoBehaviour
 {
     // Getters & Setters
     public int CurrentHP { get => currentHP; }
-    public int MaxHP { set => maxHP = value; }
+    public int MaxHP { get => maxHP; set => maxHP = value; }
 
     // Private Variables
     [SerializeField, ReadOnly] private int currentHP = 5;
@@ -28,5 +28,4 @@ public class EnemyHP : MonoBehaviour
 
         GameManager.Instance.GameOver();
     }
-
 }

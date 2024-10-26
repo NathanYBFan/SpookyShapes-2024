@@ -7,6 +7,8 @@ public class MenuGameState : BaseGameState
 
     }
 
+    [SerializeField] private GameObject[] Interactables;
+
     public override void Enter()
     {
         base.Enter();
