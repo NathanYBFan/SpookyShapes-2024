@@ -11,7 +11,7 @@ public class EnemyTrenchSpawn : MonoBehaviour
 
     private void Start()
     {
-        willBeActive = Random.Range(0, 10) <= 2 ? true : false;
+        willBeActive = Random.Range(0, 10) <= 5 ? true : false;
         if (!willBeActive || GameManager.Instance == null) gameObject.SetActive(false);
         enemyFight.transform.position = enemyFightPos.transform.position;
     }
