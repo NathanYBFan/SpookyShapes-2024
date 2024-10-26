@@ -1,6 +1,7 @@
+using NaughtyAttributes;
+using System.Collections;
 using System.Collections.Generic;
 using TMPro;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -29,6 +30,7 @@ public class GameManager : SingletonBase<GameManager>
     [SerializeField] private GameObject[] spellGOList;
     [SerializeField] private GameObject enemyBase;
     [SerializeField] private EnemyData[] enemyTypes;
+    [SerializeField, ReadOnly] private List<GameObject> enemies;
     #endregion
 
     #region Private Variables
@@ -42,16 +44,32 @@ public class GameManager : SingletonBase<GameManager>
     private void Start()
     {
         playerInputField.onFocusSelectAll = true;
-        stateMachine.ChangeState(stateMachine.fightingState);
+        stateMachine.ChangeState(stateMachine.menuState);
         ResetFocusOnInputField();
     }
-
+    private void Update()
+    {
+        if (stateMachine.GetCurrentState() != stateMachine.addSpellState)
+        {
+            if (Input.GetMouseButtonDown(0) || Input.GetMouseButtonDown(1) || Input.GetMouseButtonDown(2))
+                ResetFocusOnInputField();
+        }
+        GameLoop();
+    }
     public void GameLoop()
     {
-
+        if (stateMachine.GetCurrentState() == stateMachine.fightingState)
+        {
+            if (CheckFinishedFight())
+            {
+                stateMachine.ChangeState(stateMachine.travelState);
+            }
+            else
+            {
+                ResetFocusOnInputField();
+            }
+        }
         // timer ticks down
-        // on timer == 0 enemy will attack;
-        // repeat
     }
 
     public void ResetFocusOnInputField()
@@ -77,14 +95,22 @@ public class GameManager : SingletonBase<GameManager>
 
     }
 
-    public void StartGame()
+    public IEnumerator StartGame()
     {
+        yield return new WaitForSeconds(1);
+        while (true)
+        {
+            yield return null;
+            if (!LevelLoadManager.Instance.IsLoadingLevel) break;
+        }
         stateMachine.ChangeState(stateMachine.addSpellState);
+        LevelLoadManager.Instance.LoadMenuOverlay(LevelLoadManager.LevelNamesList[3]);
     }
 
     public void StartFight(GameObject fightBox)
     {
-        List<GameObject> enemies = new List<GameObject>();
+        ResetFocusOnInputField();
+        enemies = new List<GameObject>();
         for (int i = 0; i < fightBox.transform.childCount; i++)
         {
             if (fightBox.transform.GetChild(i).name.CompareTo("Cube") == 0) continue;
@@ -109,5 +135,17 @@ public class GameManager : SingletonBase<GameManager>
         GameObject enemy = Instantiate(enemyBase, spawnPos, Quaternion.identity);
         int enemyToPick = Random.Range(0, enemyTypes.Length);
         enemy.GetComponent<BaseEnemy>().EnemyType = enemyTypes[enemyToPick];
+    }
+
+    public bool CheckFinishedFight()
+    {
+        if (enemies.Count <= 0)
+            return true;
+
+        foreach (GameObject enemy in enemies)
+            if (enemy != null) return false;
+
+        enemies.Clear();
+        return true;
     }
 }

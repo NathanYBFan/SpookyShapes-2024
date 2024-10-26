@@ -38,6 +38,8 @@ public class PlayerController : EntityHP
 
     private void Update()
     {
+        if (GameManager.stateMachine.GetCurrentState() == GameManager.stateMachine.fightingState) return;
+
         if (movementState == PLAYER_MOVEMENT_STATE.MOVING)
         {
             if (currentNode != null && currentNode.type == MovementNode.MovementNodeType.NORMAL && pathState == PLAYER_PATH_STATE.PATH && (Input.GetKey(KeyCode.UpArrow)))
@@ -72,10 +74,6 @@ public class PlayerController : EntityHP
                 }
 
             }
-        }
-        else if (movementState == PLAYER_MOVEMENT_STATE.COMBAT)
-        {
-            //
         }
     }
 

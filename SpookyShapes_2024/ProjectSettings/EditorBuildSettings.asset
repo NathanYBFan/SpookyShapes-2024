@@ -14,4 +14,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/OptionsMenu.unity
     guid: 5f2ae591c5cfdb44f8a28f39919877ae
+  - enabled: 1
+    path: Assets/Scenes/AddSpell.unity
+    guid: cdd3e96fba2d31c448657f252f05041e
   m_configObjects: {}

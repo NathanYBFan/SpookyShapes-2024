@@ -22,17 +22,6 @@ public class InputFieldController : MonoBehaviour
                 RunMenuCommand(input);
         }
 
-        // ADD SPELL
-        else if (GameManager.stateMachine.GetCurrentState() == GameManager.stateMachine.addSpellState)
-        {
-            if (GameManager.Instance.SelectedLimiter != null && GameManager.Instance.SelectedLimiter.ValidInput(input)) return;
-            if (DictionaryManager.Instance.InsertNewSpell(input, GameManager.Instance.SelectedSpell)) return;
-            else
-            {
-                // Invalid output answer
-            }
-        }
-
         // FIGHT
         else if (GameManager.stateMachine.GetCurrentState() == GameManager.stateMachine.fightingState)
         {
@@ -91,6 +80,6 @@ public class InputFieldController : MonoBehaviour
     private void StartGame()
     {
         LevelLoadManager.Instance.StartLoadNewLevel(LevelLoadManager.LevelNamesList[1], true);
-        GameManager.Instance.StartGame();
+        StartCoroutine(GameManager.Instance.StartGame());
     }
 }

@@ -10,7 +10,8 @@ public class LevelLoadManager : SingletonBase<LevelLoadManager>
     {
         "MainMenu",
         "MainGame",
-        "OptionsMenu"
+        "OptionsMenu",
+        "AddSpell",
     };
 
     #region SerializeFields

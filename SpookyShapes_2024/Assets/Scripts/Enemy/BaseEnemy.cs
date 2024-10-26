@@ -16,7 +16,29 @@ public class BaseEnemy : MonoBehaviour
     }
 
     [SerializeField] private EnemyData enemyType;
-    [SerializeField] private float maxTime = 2;
+    [SerializeField] private float maxAnimationTime = 1f;
+
+
+    private float attackTimer = 0;
+    private float maxAttackTimer = 7;
+
+    private void Start()
+    {
+        attackTimer = maxAttackTimer;
+    }
+
+
+    private void Update()
+    {
+        attackTimer -= Time.deltaTime;
+
+        if (attackTimer <= 0f)
+        {
+            OnAttack();
+            attackTimer = maxAttackTimer;
+        }
+    }
+
 
     private void OnAttack()
     {
@@ -26,9 +48,9 @@ public class BaseEnemy : MonoBehaviour
     private IEnumerator AttackCoroutine()
     {
         enemyType.monsterMat.SetTexture("_MainTex", enemyType.AttackAnimations[0]);
-        yield return new WaitForSeconds(maxTime/2);
+        yield return new WaitForSeconds(maxAnimationTime / 2);
         enemyType.monsterMat.SetTexture("_MainTex", enemyType.AttackAnimations[1]);
-        yield return new WaitForSeconds(maxTime/2);
+        yield return new WaitForSeconds(maxAnimationTime / 2);
         ResetToIdle();
     }
 
@@ -40,5 +62,14 @@ public class BaseEnemy : MonoBehaviour
     public void OnDeath()
     {
         enemyType.monsterMat.SetTexture("_MainTex", enemyType.DeadFrame);
+    }
+
+    private IEnumerator DeathEffects()
+    {
+        // Play effect
+        // Play sound
+
+        yield return new WaitForSeconds(1);
+        Destroy(this.gameObject);
     }
 }
