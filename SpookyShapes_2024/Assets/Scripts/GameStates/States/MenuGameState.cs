@@ -4,7 +4,7 @@ public class MenuGameState : BaseGameState
 {
     public MenuGameState(GameStateMachine newStateMachine) : base(newStateMachine)
     {
-
+        gameStateMachine = newStateMachine;
     }
 
     [SerializeField] private GameObject[] Interactables;

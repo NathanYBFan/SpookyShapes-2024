@@ -15,6 +15,7 @@ public class GameManager : SingletonBase<GameManager>
     public InputActionAsset PlayerInputAction { get => playerInputAction; }
     public GameObject MainPlayer { get => mainPlayer; }
     public GameObject SpellSpawnPosGO { get => spellSpawnPosGO; }
+    public GameObject[] SpellGOList { get => spellGOList; }
     #endregion
 
     #region Serialize Fields
@@ -22,6 +23,7 @@ public class GameManager : SingletonBase<GameManager>
     [SerializeField] private GameObject mainPlayer;
     [SerializeField] private TMP_InputField playerInputField;
     [SerializeField] private GameObject spellSpawnPosGO;
+    [SerializeField] private GameObject[] spellGOList;
     #endregion
 
     #region Private Variables
@@ -35,7 +37,7 @@ public class GameManager : SingletonBase<GameManager>
     private void Start()
     {
         playerInputField.onFocusSelectAll = true;
-        stateMachine.ChangeState(stateMachine.menuState);
+        stateMachine.ChangeState(stateMachine.fightingState);
         ResetFocusOnInputField();
     }
 
@@ -68,5 +70,26 @@ public class GameManager : SingletonBase<GameManager>
     public void GameOver()
     {
 
+    }
+
+    public void StartGame()
+    {
+        stateMachine.ChangeState(stateMachine.addSpellState);
+    }
+
+    public void StartFight()
+    {
+
+    }
+
+    public void StartTravel()
+    {
+
+    }
+
+    public void SpawnSpell(GenericSpell spellData)
+    {
+        GameObject spellObject = Instantiate(spellData.spellObject, spellSpawnPosGO.transform.position, Quaternion.identity);
+        spellObject.GetComponent<ActiveSpell>().Initialize(spellData);
     }
 }

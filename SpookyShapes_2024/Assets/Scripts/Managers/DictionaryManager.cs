@@ -13,12 +13,7 @@ public class DictionaryManager : SingletonBase<DictionaryManager>
     [SerializeField] private SpellNameLimiterBase[] spellNameLimiterBases;
 
     // Private variables
-    private Dictionary<string, GenericSpell> spells = new Dictionary<string, GenericSpell>()
-    {
-        { "nathan", new FireballSpell()},
-        { "brendan", new FireballSpell()},
-        { "alysia", new FireballSpell()},
-    };
+    private Dictionary<string, GenericSpell> spells = new Dictionary<string, GenericSpell>();
 
     // Valid direction input
     private static string[] directions =
@@ -42,6 +37,11 @@ public class DictionaryManager : SingletonBase<DictionaryManager>
         "options",
         "quit",
     };
+
+    public void Start()
+    {
+        InitializeSpellsDictionary();
+    }
 
     public void PrintDictionaryDetails()
     {
@@ -69,8 +69,7 @@ public class DictionaryManager : SingletonBase<DictionaryManager>
 
     public GenericSpell TryToGetSpell(string key)
     {
-        if (!spells.TryGetValue(key, out GenericSpell newSpell)) return null;
-
+        spells.TryGetValue(key, out GenericSpell newSpell);
         return newSpell;
     }
 
@@ -82,6 +81,14 @@ public class DictionaryManager : SingletonBase<DictionaryManager>
             if (spell.Key == input) return true;
 
         return false;
+    }
+
+    private void InitializeSpellsDictionary()
+    {
+        spells.Add("nathan", new FireballSpell());
+        spells.Add("brendan", new FireballSpell());
+        spells.Add("alysia", new FireballSpell());
+
     }
     #endregion
 

@@ -1,9 +1,9 @@
 public enum GameStates
 {
     MENU,
-    TYPING,
-    WALKING,
-    ROOM
+    ADDSPELL, 
+    FIGHT,
+    WALKING
 }
 
 public enum SpellType

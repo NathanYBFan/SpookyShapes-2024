@@ -6,6 +6,13 @@ using UnityEngine.SceneManagement;
 
 public class LevelLoadManager : SingletonBase<LevelLoadManager>
 {
+    public static string[] LevelNamesList =
+    {
+        "MainMenu",
+        "MainGame",
+        "OptionsMenu"
+    };
+
     #region SerializeFields
     [SerializeField]
     [Foldout("Dependencies"), Tooltip("Loading screen script to call methods on")]
@@ -18,14 +25,9 @@ public class LevelLoadManager : SingletonBase<LevelLoadManager>
     [SerializeField, ReadOnly]
     [Foldout("Stats"), Tooltip("The name of the level currently loaded and in use")]
     private List<string> currentLevelList;
-
-    [SerializeField]
-    [Foldout("Stats"), Tooltip("List of level names that are currently in play")]
-    private List<string> levelNamesList;
     #endregion
 
     #region Getters&Setters
-    public List<string> LevelNamesList { get { return levelNamesList; } }
     public bool IsLoadingLevel { get { return isLoadingLevel; } }
     #endregion
 
@@ -69,7 +71,7 @@ public class LevelLoadManager : SingletonBase<LevelLoadManager>
         }
 
         // Load new scene
-        AsyncOperation asyncLoad = SceneManager.LoadSceneAsync(sceneToLoad, LoadSceneMode.Additive);
+        AsyncOperation asyncLoad = SceneManager.LoadSceneAsync(sceneToLoad, LoadSceneMode.Single);
 
         while (!asyncLoad.isDone)
         {

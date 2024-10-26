@@ -4,10 +4,11 @@ using UnityEngine;
 
 public class FireballSpell : GenericSpell
 {
-    void Start()
+    public FireballSpell()
     {
         spellType = SpellType.FIREBALL;
+        spellObject = GameManager.Instance?.SpellGOList[0];
+        SetPowerLevel(5);
+        isAOE = true;
     }
-
-
 }
