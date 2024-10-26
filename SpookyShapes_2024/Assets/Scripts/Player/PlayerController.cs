@@ -7,6 +7,8 @@ public class PlayerController : MonoBehaviour
     [SerializeField] Rigidbody playerBody;
     [SerializeField] Transform playerTransform;
     public float playerSpeed;
+    public int playerHealth;
+    public int playerHealthMax = 20;
     int nodesPassed;
     public MovementNode currentNode;
 
