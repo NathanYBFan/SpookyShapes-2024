@@ -8,6 +8,7 @@ public class WitchFlyBy : MonoBehaviour
     [SerializeField] float speed;
     [SerializeField] GameObject StartPos;
     [SerializeField] GameObject EndPos;
+    [SerializeField] TrailRenderer trailRenderer;
     bool willBeActive;
     bool waiting;
 
@@ -24,9 +25,11 @@ public class WitchFlyBy : MonoBehaviour
         WitchGO.transform.position = Vector3.MoveTowards(WitchGO.transform.position, EndPos.transform.position, speed * Time.deltaTime);
         if (Vector3.Distance(WitchGO.transform.position, EndPos.transform.position) < 2)
         {
+            if (trailRenderer != null) trailRenderer.enabled = false;
             waiting = true;
             WitchGO.transform.position = StartPos.transform.position;
             StartCoroutine(Wait());
+            if (trailRenderer != null) trailRenderer.enabled = true;
         }
     }
 
