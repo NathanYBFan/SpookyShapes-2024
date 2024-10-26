@@ -10,6 +10,5 @@ public class FightingGameState : BaseGameState
     public override void Enter()
     {
         base.Enter();
-        GameManager.Instance.StartFight();
     }
 }

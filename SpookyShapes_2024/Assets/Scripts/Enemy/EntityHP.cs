@@ -22,10 +22,8 @@ public abstract class EntityHP : MonoBehaviour
         currentHP = Mathf.Clamp(currentHP + amountToHeal, 0, maxHP);
     }
 
-    private void CheckIfDead()
+    public virtual void CheckIfDead()
     {
-        if (currentHP > 0) return;
-
-        GameManager.Instance.GameOver();
+        
     }
 }

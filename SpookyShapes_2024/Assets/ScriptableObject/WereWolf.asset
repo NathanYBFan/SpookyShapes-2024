@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cc560de8588b3ef458e29584fd5ba985, type: 3}
+  m_Name: WereWolf
+  m_EditorClassIdentifier: 
+  AttackAnimations:
+  - {fileID: 2800000, guid: ceb68e70365523b4f8a1a1588fc7f802, type: 3}
+  - {fileID: 2800000, guid: df492dde257946a4a9080b4d8d4ee35c, type: 3}
+  IdleFrame: {fileID: 2800000, guid: cf8a39392ec85e54c8c8b5562f17a601, type: 3}
+  DeadFrame: {fileID: 2800000, guid: cbc0d899fe865534a81ce789bbe8d98f, type: 3}
+  monsterMat: {fileID: 2100000, guid: f85f3575e8e934f4480ce7d45108191c, type: 2}
+  maxHP: 15
+  baseDamage: 1

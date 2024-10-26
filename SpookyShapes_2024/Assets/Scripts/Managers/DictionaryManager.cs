@@ -85,9 +85,10 @@ public class DictionaryManager : SingletonBase<DictionaryManager>
 
     private void InitializeSpellsDictionary()
     {
-        spells.Add("nathan", new FireballSpell());
+        spells.Add("nathan", new AcidSpell());
         spells.Add("brendan", new FireballSpell());
-        spells.Add("alysia", new FireballSpell());
+        spells.Add("alysia", new MagicMissileSpell());
+        spells.Add("benguin", new LightningSpell());
 
     }
     #endregion

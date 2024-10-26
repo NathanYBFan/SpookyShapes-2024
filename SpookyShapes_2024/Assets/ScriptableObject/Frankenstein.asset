@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cc560de8588b3ef458e29584fd5ba985, type: 3}
+  m_Name: Frankenstein
+  m_EditorClassIdentifier: 
+  AttackAnimations:
+  - {fileID: 2800000, guid: 76edfbba34581644a9614bdec79c999e, type: 3}
+  - {fileID: 2800000, guid: 25c0b8fc561f90b47a5f25df54a21618, type: 3}
+  IdleFrame: {fileID: 2800000, guid: 836cdcb088f89e744b1e4a8877e25ea4, type: 3}
+  DeadFrame: {fileID: 2800000, guid: cbc0d899fe865534a81ce789bbe8d98f, type: 3}
+  monsterMat: {fileID: 2100000, guid: 9f8b6649ae3ffb346a81867efd7ba153, type: 2}
+  maxHP: 20
+  baseDamage: 2

@@ -145,6 +145,14 @@ MonoBehaviour:
   spellSpawnPosGO: {fileID: 0}
   spellGOList:
   - {fileID: 2808785538023289867, guid: 85a2a1d51b820f94699259e82aeb82c3, type: 3}
+  - {fileID: 8592759421415967090, guid: fbca7111b65fee644acdfe2a80697004, type: 3}
+  - {fileID: 3794731603963414712, guid: f4a48516c88a6ea4a85a8435e1d7d0ba, type: 3}
+  - {fileID: 1973004798468996501, guid: 695c86e9875747546bb7420062baf69c, type: 3}
+  enemyBase: {fileID: 993620759312331497, guid: 2d6e710eabc351f41938c241f6c1104f, type: 3}
+  enemyTypes:
+  - {fileID: 11400000, guid: d75ddd119620f6f4d84c159eeaffd476, type: 2}
+  - {fileID: 11400000, guid: 926a9b5baf577c24d9af5b1a8339a9a4, type: 2}
+  - {fileID: 11400000, guid: ea9f6b859b0a3e84b820bf360ff5fa71, type: 2}
 --- !u!1 &7067750587042534442
 GameObject:
   m_ObjectHideFlags: 0

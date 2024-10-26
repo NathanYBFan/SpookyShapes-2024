@@ -1,4 +1,6 @@
+using System.Collections.Generic;
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -16,6 +18,7 @@ public class GameManager : SingletonBase<GameManager>
     public GameObject MainPlayer { get => mainPlayer; }
     public GameObject SpellSpawnPosGO { get => spellSpawnPosGO; }
     public GameObject[] SpellGOList { get => spellGOList; }
+    public GameObject EnemyBase { get => enemyBase; }
     #endregion
 
     #region Serialize Fields
@@ -24,6 +27,8 @@ public class GameManager : SingletonBase<GameManager>
     [SerializeField] private TMP_InputField playerInputField;
     [SerializeField] private GameObject spellSpawnPosGO;
     [SerializeField] private GameObject[] spellGOList;
+    [SerializeField] private GameObject enemyBase;
+    [SerializeField] private EnemyData[] enemyTypes;
     #endregion
 
     #region Private Variables
@@ -43,7 +48,7 @@ public class GameManager : SingletonBase<GameManager>
 
     public void GameLoop()
     {
-        // player attacks
+
         // timer ticks down
         // on timer == 0 enemy will attack;
         // repeat
@@ -77,9 +82,15 @@ public class GameManager : SingletonBase<GameManager>
         stateMachine.ChangeState(stateMachine.addSpellState);
     }
 
-    public void StartFight()
+    public void StartFight(GameObject fightBox)
     {
+        List<GameObject> enemies = new List<GameObject>();
+        for (int i = 0; i < fightBox.transform.childCount; i++)
+        {
+            if (fightBox.transform.GetChild(i).name.CompareTo("Cube") == 0) continue;
 
+            enemies.Add(fightBox.transform.GetChild(i).gameObject);
+        }
     }
 
     public void StartTravel()
@@ -91,5 +102,12 @@ public class GameManager : SingletonBase<GameManager>
     {
         GameObject spellObject = Instantiate(spellData.spellObject, spellSpawnPosGO.transform.position, Quaternion.identity);
         spellObject.GetComponent<ActiveSpell>().Initialize(spellData);
+    }
+
+    public void SpawnEnemy(Vector3 spawnPos)
+    {
+        GameObject enemy = Instantiate(enemyBase, spawnPos, Quaternion.identity);
+        int enemyToPick = Random.Range(0, enemyTypes.Length);
+        enemy.GetComponent<BaseEnemy>().EnemyType = enemyTypes[enemyToPick];
     }
 }

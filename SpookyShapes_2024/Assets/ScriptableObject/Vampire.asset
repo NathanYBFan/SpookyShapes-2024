@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cc560de8588b3ef458e29584fd5ba985, type: 3}
+  m_Name: Vampire
+  m_EditorClassIdentifier: 
+  AttackAnimations:
+  - {fileID: 2800000, guid: 78627eb03077f2740b8fbf0c0230b253, type: 3}
+  - {fileID: 2800000, guid: 10939e8d56df9e141b1ef26d0ebd1bcc, type: 3}
+  IdleFrame: {fileID: 2800000, guid: 4f282d3628350ce4a9e28384b380b6de, type: 3}
+  DeadFrame: {fileID: 2800000, guid: cbc0d899fe865534a81ce789bbe8d98f, type: 3}
+  monsterMat: {fileID: 2100000, guid: a8924f2dfa5171246939cdb1515308f5, type: 2}
+  maxHP: 10
+  baseDamage: 3
