@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8744771936914442018}
   - component: {fileID: 2412429238874554896}
+  - component: {fileID: -793650938653837814}
   m_Layer: 0
   m_Name: Lighting
   m_TagString: Untagged
@@ -48,6 +49,18 @@ MonoBehaviour:
   powerLevel: 0
   spellType: 0
   isAOE: 0
+--- !u!114 &-793650938653837814
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1973004798468996501}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1cc09175de84d124284a4a2f84868291, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &4236362452347492845
 GameObject:
   m_ObjectHideFlags: 0

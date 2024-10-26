@@ -62,14 +62,17 @@ public class BaseEnemy : MonoBehaviour
     public void OnDeath()
     {
         enemyType.monsterMat.SetTexture("_MainTex", enemyType.DeadFrame);
+        StopAllCoroutines();
+        StartCoroutine(DeathEffects());
     }
 
     private IEnumerator DeathEffects()
     {
         // Play effect
         // Play sound
+        enemyType.monsterMat.SetTexture("_MainTex", enemyType.DeadFrame);
 
-        yield return new WaitForSeconds(1);
+        yield return new WaitForSeconds(2.5f);
         Destroy(this.gameObject);
     }
 }

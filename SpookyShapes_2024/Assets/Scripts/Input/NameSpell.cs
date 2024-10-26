@@ -31,6 +31,7 @@ public class NameSpell : MonoBehaviour
         if (input.Length < 6) return;
         if (DictionaryManager.Instance.InsertNewSpell(input, GameManager.Instance.SelectedSpell))
         {
+            DictionaryManager.Instance.PrintDictionaryDetails();
             LevelLoadManager.Instance.UnloadMenuOverlay(LevelLoadManager.LevelNamesList[3]);
             GameManager.stateMachine.ChangeState(GameManager.stateMachine.travelState);
             GameManager.Instance.ResetFocusOnInputField();

@@ -20,6 +20,8 @@ public class GameManager : SingletonBase<GameManager>
     public GameObject SpellSpawnPosGO { get => spellSpawnPosGO; set => spellSpawnPosGO = value; }
     public GameObject[] SpellGOList { get => spellGOList; }
     public GameObject EnemyBase { get => enemyBase; }
+    public List<GameObject> Enemies { get => enemies; }
+
     #endregion
 
     #region Serialize Fields
@@ -38,7 +40,7 @@ public class GameManager : SingletonBase<GameManager>
     private SpellNameLimiterBase selectedLimiter;
     private GenericSpell selectedSpell;
     // Damage multiplier
-    private int spellDamageMultiplier;
+    private int spellDamageMultiplier = 1;
     #endregion
 
     private void Start()
@@ -66,7 +68,7 @@ public class GameManager : SingletonBase<GameManager>
             }
             else
             {
-                ResetFocusOnInputField();
+                //ResetFocusOnInputField();
             }
         }
         // timer ticks down
@@ -110,13 +112,6 @@ public class GameManager : SingletonBase<GameManager>
     public void StartFight(GameObject fightBox)
     {
         ResetFocusOnInputField();
-        enemies = new List<GameObject>();
-        for (int i = 0; i < fightBox.transform.childCount; i++)
-        {
-            if (fightBox.transform.GetChild(i).name.CompareTo("Cube") == 0) continue;
-
-            enemies.Add(fightBox.transform.GetChild(i).gameObject);
-        }
     }
 
     public void StartTravel()
@@ -135,6 +130,8 @@ public class GameManager : SingletonBase<GameManager>
         GameObject enemy = Instantiate(enemyBase, spawnPos, Quaternion.identity);
         int enemyToPick = Random.Range(0, enemyTypes.Length);
         enemy.GetComponent<BaseEnemy>().EnemyType = enemyTypes[enemyToPick];
+
+        enemies.Add(enemy);
     }
 
     public bool CheckFinishedFight()

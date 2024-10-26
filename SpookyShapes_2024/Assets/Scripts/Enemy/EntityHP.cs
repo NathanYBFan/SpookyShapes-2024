@@ -13,6 +13,7 @@ public abstract class EntityHP : MonoBehaviour
 
     public void TakeDamage(int damageToTake)
     {
+        Debug.Log("Taking " + damageToTake + " damage");
         currentHP -= damageToTake;
         CheckIfDead();
     }
