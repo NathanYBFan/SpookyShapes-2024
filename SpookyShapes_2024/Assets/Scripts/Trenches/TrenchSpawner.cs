@@ -8,15 +8,17 @@ public class TrenchSpawner : MonoBehaviour
     public static TrenchSpawner Instance;
 
 
-    [SerializeField] GameObject TrenchPrefab_Straight;
-    [SerializeField] GameObject TrenchPrefab_Fork;
+    [SerializeField] ObjectPool trenchPool_straight;
+    [SerializeField] ObjectPool trenchPool_fork;
 
     [SerializeField] int maxTrenchesAtOnce;
     [SerializeField] int trenchPlaceSpacing;
+    public int trenchesPlaced;
+    public int trenchesPlacedUntilFork = 6;
     int currentDistance = 0; //where to spawn next node
     public List<MovementNode> movementNodes = new List<MovementNode>();
     private MovementNode previousNode;
-    private MovementNode currentNode;
+    public MovementNode currentNode;
 
 
     private void Awake()
@@ -27,22 +29,30 @@ public class TrenchSpawner : MonoBehaviour
     private void SpawnNode()
     {
         GameObject newTrench;
-        float rand = Random.Range(0, 10);
-
-        if (rand <= 8)
-            newTrench = Instantiate(TrenchPrefab_Straight, transform);
+        float distance = currentDistance;
+        trenchesPlaced++;
+        
+        if (trenchesPlaced <= trenchesPlacedUntilFork)
+            newTrench = trenchPool_straight.GetObject();
         else
-            newTrench = Instantiate(TrenchPrefab_Straight, transform);
+        {
+            newTrench = trenchPool_fork.GetObject();
+            trenchesPlaced = 0;
+        }
+
+        if (newTrench == null ) { return; }
 
         if (previousNode == null)
             newTrench.transform.position = new Vector3(0, 0, currentDistance);
         else
-            newTrench.transform.position = new Vector3(previousNode.transform.position.x, 0, currentDistance);
+            newTrench.transform.position = new Vector3(currentNode.transform.position.x, 0, currentDistance);
         
-        currentDistance += trenchPlaceSpacing;
+        
 
         MovementNode moveNode = newTrench.GetComponentInChildren<MovementNode>();
-        
+
+        currentDistance += moveNode.type == MovementNode.MovementNodeType.NORMAL ? trenchPlaceSpacing : trenchPlaceSpacing*2;
+
         if (previousNode != null) currentNode.nextNode = moveNode;
         else 
         { 
@@ -60,15 +70,28 @@ public class TrenchSpawner : MonoBehaviour
     {
         SpawnNode();
         
-        SpawnMoreTrenches(maxTrenchesAtOnce);   
+        SpawnMoreTrenches(trenchesPlacedUntilFork);   
     }
 
     public void NodePassed()
     {
-        SpawnMoreTrenches(1);
+        //SpawnMoreTrenches(1);
         RemoveMoreTrenches(1);
     }
 
+    public void TrenchPathChosen(bool LEFT)
+    {
+        if (LEFT) 
+        { 
+            currentNode = currentNode.left;
+        }
+        else
+        {
+            currentNode = currentNode.right;
+        }
+        SpawnMoreTrenches(trenchesPlacedUntilFork+1);
+
+    }
     private void SpawnMoreTrenches(int x)
     {
         StartCoroutine(SpawnTrenches(x));
@@ -85,7 +108,10 @@ public class TrenchSpawner : MonoBehaviour
         {
             MovementNode toGo = movementNodes[0];
             movementNodes.RemoveAt(0);
-            Destroy(toGo.gameObject);
+            if (toGo.type == MovementNode.MovementNodeType.NORMAL)
+                trenchPool_straight.ReturnObject(toGo.gameObject);
+            else
+                trenchPool_fork.ReturnObject(toGo.gameObject);
             yield return null;
         }
         yield return null;

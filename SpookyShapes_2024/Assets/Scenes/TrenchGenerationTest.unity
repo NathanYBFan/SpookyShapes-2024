@@ -237,6 +237,39 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &446205501
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 446205502}
+  m_Layer: 0
+  m_Name: ObjectPools
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &446205502
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 446205501}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 1189788460}
+  - {fileID: 1506779448}
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &679143537
 GameObject:
   m_ObjectHideFlags: 0
@@ -408,10 +441,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7a34fd98a3d923b419e16dc2f4481cd3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  currentHP: 5
+  maxHP: 5
   playerBody: {fileID: 226918126}
   playerTransform: {fileID: 226918125}
-  playerSpeed: 5
+  playerSpeed: 10
   currentNode: {fileID: 0}
+  movementState: 0
+  pathState: 0
 --- !u!1 &963194225
 GameObject:
   m_ObjectHideFlags: 0
@@ -498,12 +535,104 @@ Transform:
   m_GameObject: {fileID: 963194225}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 1.5, z: 0}
+  m_LocalPosition: {x: 0, y: 2, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 226918125}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1189788459
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1189788460}
+  - component: {fileID: 1189788461}
+  m_Layer: 0
+  m_Name: TrenchPool
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1189788460
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1189788459}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 446205502}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1189788461
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1189788459}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a322cd1254b5f10419b11e5a4878a6b9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  objectSpawnAmount: 15
+  objectToSpawn: {fileID: 678857830887655366, guid: fcc72f497a493084287ab5be8f2b8105, type: 3}
+--- !u!1 &1506779447
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1506779448}
+  - component: {fileID: 1506779449}
+  m_Layer: 0
+  m_Name: TrenchForkPool
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1506779448
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1506779447}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 446205502}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1506779449
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1506779447}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a322cd1254b5f10419b11e5a4878a6b9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  objectSpawnAmount: 5
+  objectToSpawn: {fileID: 678857830887655366, guid: 1e989d5b29a646d45a233501290bdad5, type: 3}
 --- !u!1 &1771112636
 GameObject:
   m_ObjectHideFlags: 0
@@ -548,11 +677,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aec20c7973b85454ab3ba953013c3860, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  TrenchPrefab_Straight: {fileID: 678857830887655366, guid: fcc72f497a493084287ab5be8f2b8105, type: 3}
-  TrenchPrefab_Fork: {fileID: 678857830887655366, guid: 1e989d5b29a646d45a233501290bdad5, type: 3}
+  trenchPool_straight: {fileID: 1189788461}
+  trenchPool_fork: {fileID: 1506779449}
   maxTrenchesAtOnce: 10
   trenchPlaceSpacing: 10
+  trenchesPlaced: 0
+  trenchesPlacedUntilFork: 6
   movementNodes: []
+  currentNode: {fileID: 0}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
@@ -561,3 +693,4 @@ SceneRoots:
   - {fileID: 679143538}
   - {fileID: 442230404}
   - {fileID: 1771112637}
+  - {fileID: 446205502}

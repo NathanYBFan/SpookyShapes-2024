@@ -7,9 +7,11 @@ public class MovementNode : MonoBehaviour
     public enum MovementNodeType
     {
         NORMAL,
-        PATH
+        FORK
     }
-
+    public MovementNodeType type;
     public MovementNode nextNode;
+    public MovementNode left;
+    public MovementNode right;
 
 }
