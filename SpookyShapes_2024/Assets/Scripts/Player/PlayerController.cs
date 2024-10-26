@@ -33,7 +33,7 @@ public class PlayerController : EntityHP
     private void Awake()
     {
         instance = this;
-        
+        GameManager.Instance.MainPlayer = instance.transform.parent.gameObject;
     }
 
     private void Update()
