@@ -21,7 +21,7 @@ public class GameManager : SingletonBase<GameManager>
     public GameObject[] SpellGOList { get => spellGOList; }
     public GameObject EnemyBase { get => enemyBase; }
     public List<GameObject> Enemies { get => enemies; }
-
+    public List<BaseEnemy> CurrentEnemies { get => currentEnemies; set => currentEnemies = value; }
     #endregion
 
     #region Serialize Fields
@@ -33,6 +33,7 @@ public class GameManager : SingletonBase<GameManager>
     [SerializeField] private GameObject enemyBase;
     [SerializeField] private EnemyData[] enemyTypes;
     [SerializeField, ReadOnly] private List<GameObject> enemies;
+    [SerializeField] private List<BaseEnemy> currentEnemies;
     #endregion
 
     #region Private Variables
@@ -125,24 +126,26 @@ public class GameManager : SingletonBase<GameManager>
         spellObject.GetComponent<ActiveSpell>().Initialize(spellData);
     }
 
-    public void SpawnEnemy(Vector3 spawnPos)
+    public BaseEnemy SpawnEnemy(Vector3 spawnPos)
     {
         GameObject enemy = Instantiate(enemyBase, spawnPos, Quaternion.identity);
         int enemyToPick = Random.Range(0, enemyTypes.Length);
-        enemy.GetComponent<BaseEnemy>().EnemyType = enemyTypes[enemyToPick];
-
+        BaseEnemy bEnemy = enemy.GetComponent<BaseEnemy>();
+        bEnemy.EnemyType = enemyTypes[enemyToPick];
         enemies.Add(enemy);
+        return bEnemy;
+        
     }
 
     public bool CheckFinishedFight()
     {
-        if (enemies.Count <= 0)
+        if (currentEnemies.Count <= 0)
             return true;
 
-        foreach (GameObject enemy in enemies)
-            if (enemy != null && !enemy.GetComponent<BaseEnemy>().IsDead) return false;
+        foreach (BaseEnemy enemy in currentEnemies)
+            if (enemy != null && !enemy.IsDead) return false;
 
-        enemies.Clear();
+        currentEnemies.Clear();
         return true;
     }
 }

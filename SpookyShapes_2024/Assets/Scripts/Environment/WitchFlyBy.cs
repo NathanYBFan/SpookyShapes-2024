@@ -14,7 +14,7 @@ public class WitchFlyBy : MonoBehaviour
 
     private void Start()
     {
-        willBeActive = Random.Range(0, 10) <= 2 ? true : false;
+        willBeActive = Random.Range(0, 10) <= 4 ? true : false;
         if (!willBeActive) gameObject.SetActive(false);
         WitchGO.transform.position = StartPos.transform.position;
     }

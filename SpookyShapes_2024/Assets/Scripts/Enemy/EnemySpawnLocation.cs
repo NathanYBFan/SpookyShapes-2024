@@ -4,8 +4,9 @@ using UnityEngine;
 
 public class EnemySpawnLocation : MonoBehaviour
 {
+    [SerializeField] EnemyTrenchSpawn ets;
     private void Start()
     {
-        GameManager.Instance.SpawnEnemy(transform.position);
+        ets.enemies.Add(GameManager.Instance.SpawnEnemy(transform.position));
     }
 }

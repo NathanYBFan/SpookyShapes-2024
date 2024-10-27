@@ -215,7 +215,7 @@ GameObject:
   - component: {fileID: 2992809468128450094}
   - component: {fileID: 4923384409141776909}
   m_Layer: 0
-  m_Name: Trench_Path
+  m_Name: Trench_Fork
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -259,8 +259,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   type: 1
   nextNode: {fileID: 0}
+  fromFork: 0
   left: {fileID: 8637362301267164925}
   right: {fileID: 4424843490232690123}
+  EnemiesTrenchObject: {fileID: 0}
+  EnemySpawn: {fileID: 0}
 --- !u!1 &718070458583953756
 GameObject:
   m_ObjectHideFlags: 0
@@ -340,8 +343,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   type: 0
   nextNode: {fileID: 0}
+  fromFork: 1
   left: {fileID: 0}
   right: {fileID: 0}
+  EnemiesTrenchObject: {fileID: 0}
+  EnemySpawn: {fileID: 0}
 --- !u!1 &1035352595950916299
 GameObject:
   m_ObjectHideFlags: 0
@@ -7755,8 +7761,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   type: 0
   nextNode: {fileID: 0}
+  fromFork: 1
   left: {fileID: 0}
   right: {fileID: 0}
+  EnemiesTrenchObject: {fileID: 0}
+  EnemySpawn: {fileID: 0}
 --- !u!1 &7600498575354465589
 GameObject:
   m_ObjectHideFlags: 0

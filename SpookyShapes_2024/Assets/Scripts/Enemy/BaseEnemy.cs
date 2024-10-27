@@ -20,7 +20,7 @@ public class BaseEnemy : MonoBehaviour
     [SerializeField] private EnemyData enemyType;
     [SerializeField] private float maxAnimationTime = 1f;
 
-    private bool isDead = false;
+    public bool isDead = false;
     private float attackTimer = 0;
     private float maxAttackTimer = 7;
 
@@ -41,6 +41,7 @@ public class BaseEnemy : MonoBehaviour
             OnAttack();
             attackTimer = maxAttackTimer;
         }
+
     }
 
 

@@ -14,8 +14,8 @@ public class SpellBehaviour : MonoBehaviour
     private void DealDamage()
     {
         damage = GetComponent<ActiveSpell>().GetDamage();
-
-        foreach (var enemy in GameManager.Instance.Enemies)
+        if (GameManager.Instance.CurrentEnemies == null) return;
+        foreach (var enemy in GameManager.Instance.CurrentEnemies)
             enemy.GetComponent<EnemyHP>().TakeDamage(damage);
         StartCoroutine(DestroyYourself());
     }
