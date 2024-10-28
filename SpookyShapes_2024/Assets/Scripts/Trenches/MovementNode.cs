@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class MovementNode : MonoBehaviour
@@ -16,6 +14,7 @@ public class MovementNode : MonoBehaviour
     public MovementNode left;
     public MovementNode right;
 
+    public GameObject EnemiesTrenchObject_prefab;
     public GameObject EnemiesTrenchObject;
     public GameObject EnemySpawn;
 
@@ -23,7 +22,15 @@ public class MovementNode : MonoBehaviour
     {
         if (type != MovementNodeType.NORMAL || fromFork) return;
         if (EnemySpawn == null) { gameObject.SetActive(false); }
-        Instantiate(EnemiesTrenchObject, EnemySpawn.transform);
+        if (EnemySpawn.transform.childCount > 0) return;
+        EnemiesTrenchObject = Instantiate(EnemiesTrenchObject_prefab, EnemySpawn.transform);
+    }
+
+    private void OnDisable()
+    {
+        if (type != MovementNodeType.NORMAL || fromFork) return;
+        if (EnemySpawn.transform.childCount > 0)
+            Destroy(EnemiesTrenchObject);
     }
 
 }

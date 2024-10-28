@@ -312,6 +312,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: FireLight
       objectReference: {fileID: 0}
+    - target: {fileID: 4005623199453311954, guid: 5f51af837b6922847bfb95e4bd1671c2, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5620093435987706119, guid: 5f51af837b6922847bfb95e4bd1671c2, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -589,7 +593,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1196824276
 MonoBehaviour:
   m_ObjectHideFlags: 0

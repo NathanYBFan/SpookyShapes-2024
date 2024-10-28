@@ -1,5 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class WitchFlyBy : MonoBehaviour
@@ -9,6 +8,8 @@ public class WitchFlyBy : MonoBehaviour
     [SerializeField] GameObject StartPos;
     [SerializeField] GameObject EndPos;
     [SerializeField] TrailRenderer trailRenderer;
+    [SerializeField] bool Rotate;
+    [SerializeField] GameObject RotatePivot;
     bool willBeActive;
     bool waiting;
 
@@ -16,20 +17,33 @@ public class WitchFlyBy : MonoBehaviour
     {
         willBeActive = Random.Range(0, 10) <= 4 ? true : false;
         if (!willBeActive) gameObject.SetActive(false);
-        WitchGO.transform.position = StartPos.transform.position;
+        //WitchGO.transform.position = StartPos.transform.position;
+        if (Rotate)
+        {
+            speed = Random.Range(speed * 0.75f, speed * 1.25f);
+            WitchGO.transform.parent = StartPos.transform;
+            WitchGO.transform.localPosition = Vector3.zero;
+        }
     }
 
     private void Update()
     {
         if (waiting) return;
-        WitchGO.transform.position = Vector3.MoveTowards(WitchGO.transform.position, EndPos.transform.position, speed * Time.deltaTime);
-        if (Vector3.Distance(WitchGO.transform.position, EndPos.transform.position) < 2)
+        if (!Rotate)
         {
-            if (trailRenderer != null) trailRenderer.enabled = false;
-            waiting = true;
-            WitchGO.transform.position = StartPos.transform.position;
-            StartCoroutine(Wait());
-            if (trailRenderer != null) trailRenderer.enabled = true;
+            WitchGO.transform.position = Vector3.MoveTowards(WitchGO.transform.position, EndPos.transform.position, speed * Time.deltaTime);
+            if (Vector3.Distance(WitchGO.transform.position, EndPos.transform.position) < 2)
+            {
+                if (trailRenderer != null) trailRenderer.enabled = false;
+                waiting = true;
+                WitchGO.transform.position = StartPos.transform.position;
+                StartCoroutine(Wait());
+                if (trailRenderer != null) trailRenderer.enabled = true;
+            }
+        }
+        else
+        {
+            RotatePivot.transform.Rotate(0, 0, (speed * Time.deltaTime));
         }
     }
 
